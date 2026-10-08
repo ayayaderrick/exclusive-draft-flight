@@ -16,9 +16,15 @@ etag master LocalLastChangedAt
   update;
   delete;
 
-  field ( numbering : managed, readonly ) TravelUuid;
-  field (readonly) LocalLastChangedAt;
   association _Booking { create; }
+
+  field ( numbering : managed, readonly ) TravelUuid;
+  field (readonly) LocalLastChangedAt, OverallStatus;
+
+
+  action acceptTravel result [1] $self;
+  action rejectTravel result [1] $self;
+
 
   mapping for /dmo/a_travel_d
     {
