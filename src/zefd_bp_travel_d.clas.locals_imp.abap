@@ -52,6 +52,24 @@ CLASS lhc_Travel IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD rejectTravel.
+
+    "Modify travel instance
+    MODIFY ENTITIES OF zefd_r_travel_d IN LOCAL MODE
+      ENTITY Travel
+        UPDATE FIELDS (  OverallStatus )
+        WITH VALUE #( FOR key IN keys ( %tky          = key-%tky
+                                        OverallStatus = travel_status-rejected ) ).
+
+    "Read changed data for action result
+    READ ENTITIES OF zefd_r_travel_d IN LOCAL MODE
+      ENTITY Travel
+        ALL FIELDS WITH
+        CORRESPONDING #( keys )
+      RESULT DATA(travels).
+
+    result = VALUE #( FOR travel IN travels ( %tky   = travel-%tky
+                                              %param = travel ) ).
+
   ENDMETHOD.
 
 ENDCLASS.
