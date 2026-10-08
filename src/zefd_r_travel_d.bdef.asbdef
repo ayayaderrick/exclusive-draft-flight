@@ -24,6 +24,7 @@ etag master LocalLastChangedAt
 
   action acceptTravel result [1] $self;
   action rejectTravel result [1] $self;
+  action deductDiscount parameter /dmo/a_travel_discount result [1] $self { default function GetDefaultsFordeductDiscount ; }
 
 
   mapping for /dmo/a_travel_d
