@@ -19,7 +19,7 @@ define view entity ZEFD_R_BOOKINGSUPPLEMENT_D
       supplement_id         as SupplementId,
 
       @Semantics.amount.currencyCode: 'CurrencyCode'
-      price                 as Price,
+      price                 as BookSupplPrice,
       currency_code         as CurrencyCode,
 
       //local ETag field --> OData ETag
