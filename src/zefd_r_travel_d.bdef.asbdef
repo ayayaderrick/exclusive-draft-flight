@@ -19,13 +19,13 @@ etag master LocalLastChangedAt
   association _Booking { create; }
 
   field ( numbering : managed, readonly ) TravelUuid;
-  field (readonly) LocalLastChangedAt, OverallStatus;
+  field ( readonly ) LocalLastChangedAt, OverallStatus;
 
 
   action acceptTravel result [1] $self;
   action rejectTravel result [1] $self;
-  action deductDiscount parameter /dmo/a_travel_discount result [1] $self { default function GetDefaultsFordeductDiscount ; }
-
+  action deductDiscount parameter /dmo/a_travel_discount result [1] $self { default function GetDefaultsFordeductDiscount; }
+  internal action reCalcTotalPrice;
 
   mapping for /dmo/a_travel_d
     {
@@ -64,7 +64,7 @@ etag master LocalLastChangedAt
   field ( readonly ) TravelUUID, LocalLastChangedAt;
   field ( numbering : managed, readonly ) BookingUUID;
 
-    mapping for /dmo/a_booking_d
+  mapping for /dmo/a_booking_d
     {
       AirlineID          = carrier_id;
       BookingDate        = booking_date;
@@ -98,7 +98,7 @@ etag master LocalLastChangedAt
   association _Travel;
   association _Booking;
 
-    mapping for /dmo/a_bksuppl_d
+  mapping for /dmo/a_bksuppl_d
     {
       BookSupplPrice      = price;
       BookSupplUUID       = booksuppl_uuid;
